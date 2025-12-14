@@ -64,6 +64,7 @@ export default defineEventHandler(async (event) => {
       fi && \\
       git fetch origin && \\
       git reset --hard origin/${gitBranch} && \\
+      pm2 stop ${pm2AppName} && \\
       npm ci && \\
       npm run build && \\
       pm2 restart ${pm2AppName}
