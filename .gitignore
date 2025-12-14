@@ -17,7 +17,6 @@ logs
 .DS_Store
 .fleet
 .idea
-deploy.http
 # Local env files
 .env
 .env.*
