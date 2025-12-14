@@ -52,7 +52,7 @@ export default defineEventHandler(async (event) => {
     
     // Run deployment in background without waiting
     // Reset local changes and pull fresh from remote
-    exec('cd /data/nuxt && git fetch origin && git reset --hard origin/main && npm install && npm run build && pm2 restart nuxt-app', (error, stdout, stderr) => {
+    exec('cd /data/websites/myarticles && git fetch origin && git reset --hard origin/main && npm install && npm run build && pm2 restart myarticles', (error, stdout, stderr) => {
       if (error) {
         console.error('Deployment error:', error)
         return

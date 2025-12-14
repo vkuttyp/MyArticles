@@ -1,0 +1,79 @@
+### Deploy API Test
+### This file tests the GitHub webhook deployment endpoint
+
+@baseUrl = http://localhost:3000
+@productionUrl = https://web.aw.iserveus.com
+@webhookSecret = cf2a92d8ed2697037c01586729ffa640cc785bd539e28aa688898d028762d81a
+
+### Test Deploy Endpoint (Local)
+POST {{baseUrl}}/api/deploy
+Content-Type: application/json
+x-hub-signature-256: sha256=fdb5b21222638a9b5d24b4948540fd7cf3d5f566f5a5602321550486301a7fa2
+
+{
+  "ref": "refs/heads/main",
+  "repository": {
+    "name": "myarticles",
+    "full_name": "vkuttyp/myarticles"
+  },
+  "pusher": {
+    "name": "test-user"
+  },
+  "commits": [
+    {
+      "message": "Test deployment"
+    }
+  ]
+}
+
+### Test Deploy Endpoint (Production)
+POST {{productionUrl}}/api/deploy
+Content-Type: application/json
+x-hub-signature-256: sha256=test_signature
+
+{
+  "ref": "refs/heads/main",
+  "repository": {
+    "name": "myarticles",
+    "full_name": "vkuttyp/myarticles"
+  },
+  "pusher": {
+    "name": "test-user"
+  },
+  "commits": [
+    {
+      "message": "Test deployment"
+    }
+  ]
+}
+
+### Generate Valid Signature (for testing)
+### To generate a valid signature, use this Node.js script:
+###
+### const crypto = require('crypto');
+### const secret = 'your-webhook-secret-here';
+### const payload = JSON.stringify({
+###   "ref": "refs/heads/main",
+###   "repository": {
+###     "name": "myarticles",
+###     "full_name": "vkuttyp/myarticles"
+###   }
+### });
+### const signature = 'sha256=' + crypto.createHmac('sha256', secret).update(payload).digest('hex');
+### console.log(signature);
+
+### Test without signature (should fail with 401)
+POST {{baseUrl}}/api/deploy
+Content-Type: application/json
+
+{
+  "ref": "refs/heads/main"
+}
+
+### Test with empty body (should fail with 400)
+POST {{baseUrl}}/api/deploy
+Content-Type: application/json
+x-hub-signature-256: sha256=test_signature
+
+### Health Check (if you want to add one)
+GET {{baseUrl}}/api/health
