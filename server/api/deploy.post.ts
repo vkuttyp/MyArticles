@@ -1,6 +1,10 @@
 export default defineEventHandler(async (event) => {
-  // Get the webhook secret from environment variables
+  // Configuration from environment variables
   const webhookSecret = process.env.WEBHOOK_SECRET
+  const deployPath = process.env.DEPLOY_PATH || '/data/websites/myarticles'
+  const gitRepo = process.env.GIT_REPO || 'https://github.com/vkuttyp/myarticles.git'
+  const gitBranch = process.env.GIT_BRANCH || 'main'
+  const pm2AppName = process.env.PM2_APP_NAME || 'myarticles'
   
   if (!webhookSecret) {
     console.error('WEBHOOK_SECRET not configured')
@@ -51,8 +55,21 @@ export default defineEventHandler(async (event) => {
     console.log('Starting deployment in background...')
     
     // Run deployment in background without waiting
-    // Reset local changes and pull fresh from remote
-    exec('cd /data/websites/myarticles && git fetch origin && git reset --hard origin/main && npm install && npm run build && pm2 restart myarticles', (error, stdout, stderr) => {
+    // Initialize git if needed, then pull and deploy
+    const deployCommand = `
+      cd ${deployPath} && \\
+      if [ ! -d .git ]; then \\
+        git init && \\
+        git remote add origin ${gitRepo}; \\
+      fi && \\
+      git fetch origin && \\
+      git reset --hard origin/${gitBranch} && \\
+      npm install && \\
+      npm run build && \\
+      pm2 restart ${pm2AppName}
+    `
+    
+    exec(deployCommand, (error, stdout, stderr) => {
       if (error) {
         console.error('Deployment error:', error)
         return
