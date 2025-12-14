@@ -1,12 +1,12 @@
 ---
-title: Test file
-sitemap:
-  loc: /articles/test
-readingTime:
-  text: 1 min read
-  minutes: 0.01
-  time: 600
-  words: 2
+title: "H2O-My-God! The Ultimate Guide to Not Turning Into a Human Raisin"
+date: 2025-08-29
+description: Learn why drinking water is important, because it actually is. Discover tips and tricks to stay hydrated and never miss a glass of water. 
+tags: [tutorial, health]
+author: Matteo Beltrame
+author_avatar: /assets/avatars/trat.jpg
+author_description: "Coding guy"
+thumbnail: /assets/articles/why-you-should-drink-water.jpeg
 ---
 
 # Test file
