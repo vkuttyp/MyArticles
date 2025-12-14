@@ -71,12 +71,21 @@ export default defineEventHandler(async (event) => {
     
     exec(deployCommand, (error, stdout, stderr) => {
       if (error) {
-        console.error('Deployment error:', error)
+        console.error('=== DEPLOYMENT FAILED ===')
+        console.error('Error:', error.message)
+        console.error('Command:', error.cmd)
+        console.error('Exit code:', error.code)
+        console.error('stdout:', stdout)
+        console.error('stderr:', stderr)
+        console.error('========================')
         return
       }
-      console.log('Deployment completed successfully')
+      console.log('=== DEPLOYMENT COMPLETED SUCCESSFULLY ===')
       console.log('stdout:', stdout)
-      if (stderr) console.error('stderr:', stderr)
+      if (stderr) {
+        console.log('stderr (warnings):', stderr)
+      }
+      console.log('========================================')
     })
     
     // Respond immediately to GitHub
