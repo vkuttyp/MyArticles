@@ -44,10 +44,20 @@ export default defineNuxtConfig({
             },
         },
     },
-    modules: ["@nuxt/ui", "@nuxt/image", "@nuxtjs/mdc", "motion-v/nuxt", "@nuxt/content", "@nuxtjs/seo", "@vueuse/nuxt"],
+    studio: {
+    // Git repository configuration (owner and repo are required)
+    repository: {
+      provider: 'github', // 'github' or 'gitlab'
+      owner: 'vkuttyp', // your GitHub/GitLab username or organization
+      repo: 'myarticles', // your repository name
+      branch: 'main', // the branch to commit to (default: 'main')
+    }
+  },
+    modules: ["@nuxt/ui", "@nuxt/image", "@nuxtjs/mdc", "motion-v/nuxt", "@nuxt/content", "@nuxtjs/seo", "@vueuse/nuxt", "nuxt-studio"],
     
     sitemap: {
         // Disable runtime cache storage which tries to use service workers
         runtimeCacheStorage: false,
     },
+    
 });
