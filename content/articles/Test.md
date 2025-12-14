@@ -9,7 +9,7 @@ author_description: "Coding guy"
 thumbnail: /assets/articles/why-you-should-drink-water.jpeg
 ---
 
-# Test file
+# Test file For testing purpose
 
 # Nuxt Minimal Starter
 
