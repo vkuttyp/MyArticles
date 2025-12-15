@@ -90,3 +90,4 @@ Testing multi-website webhook - Sun Dec 14 23:13:23 +03 2025
 
 Final test - Sun Dec 14 23:24:06 +03 2025
 Testing SQLite webhook - Mon Dec 15 12:18:04 +03 2025
+Testing fixed SQLite webhook - Mon Dec 15 12:20:06 +03 2025
