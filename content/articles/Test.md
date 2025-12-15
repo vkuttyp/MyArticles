@@ -1,7 +1,7 @@
 ---
 title: "This is a New Test"
 date: 2025-08-01
-description: Getting website info from database. why drinking water is important, because it actually is. Discover tips and tricks to stay hydrated and never miss a glass of water. 
+description: New Test!!! Getting website info from database. why drinking water is important, because it actually is. Discover tips and tricks to stay hydrated and never miss a glass of water. 
 tags: [tutorial, health]
 author: Matteo Beltrame
 author_avatar: /assets/avatars/trat.jpg
