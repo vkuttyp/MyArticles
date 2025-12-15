@@ -8,15 +8,15 @@ export default defineContentConfig({
                 source: "articles/**/*.md",
                 type: "page",
                 schema: z.object({
+                    title: z.string(),
                     author: z.string(),
                     author_avatar: z.string(),
                     author_description: z.string(),
                     date: z.date(),
                     description: z.string(),
-                    rawbody: z.string(),
-                    tags: z.optional(z.array(z.string())),
+                    tags: z.optional(z.array(z.string())),                    
                     thumbnail: z.string(),
-                    title: z.string(),
+                    rawbody: z.string(),
                 }),
             })
         ),
